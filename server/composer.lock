@@ -4,8 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebf8d31bc1ae5f3d25ed175a0350de5f",
+    "content-hash": "ec3e7ead9e23589f6e446450f36a219f",
     "packages": [
+        {
+            "name": "aura/filter",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/auraphp/Aura.Filter.git",
+                "reference": "ac33b700379d1cb978a077328425153060a91ab5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/auraphp/Aura.Filter/zipball/ac33b700379d1cb978a077328425153060a91ab5",
+                "reference": "ac33b700379d1cb978a077328425153060a91ab5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-libxml": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "aura/di": "~2.0",
+                "phpunit/phpunit": "~5.7 || ~4.8"
+            },
+            "suggest": {
+                "ext-iconv": "To support UTF-8 in string-length filters.",
+                "ext-intl": "To support IDNs in email filters.",
+                "ext-mbstring": "To support UTF-8 in string-length filters."
+            },
+            "type": "library",
+            "extra": {
+                "aura": {
+                    "type": "library",
+                    "config": {
+                        "common": "Aura\\Filter\\_Config\\Common"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aura\\Filter\\": "src/",
+                    "Aura\\Filter\\_Config\\": "config/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aura.Filter Contributors",
+                    "homepage": "https://github.com/auraphp/Aura.Filter/contributors"
+                }
+            ],
+            "description": "Filters to validate and sanitize objects and arrays.",
+            "homepage": "https://github.com/auraphp/Aura.Filter",
+            "keywords": [
+                "filter",
+                "sanitize",
+                "validate",
+                "validation",
+                "validator"
+            ],
+            "time": "2017-04-20T05:28:07+00:00"
+        },
         {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
