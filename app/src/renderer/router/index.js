@@ -15,6 +15,21 @@ export default new Router({
       component: require('@/components/Pages').default
     },
     {
+      path: '/pages/:id',
+      name: 'view-pages',
+      component: require('@/components/Pages/View').default
+    },
+    {
+      path: '/pages/edit/:id',
+      name: 'edit-pages',
+      component: require('@/components/Pages/Edit').default
+    },
+    {
+      path: '/pages/remove/:id',
+      name: 'remove-pages',
+      component: require('@/components/Pages/Remove').default
+    },
+    {
       path: '/pages/add',
       name: 'new-page',
       component: require('@/components/Pages/Add').default

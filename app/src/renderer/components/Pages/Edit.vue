@@ -6,14 +6,14 @@
             <small>AÇÕES</small>
           </p>
 
-          <a href="#/pages" class="btn btn-secondary" title="Voltar">
+          <a :href="'#/pages/' + page.id" class="btn btn-secondary" title="Voltar">
             <i class="fa fa-arrow-circle-left"></i>
           </a>
         </div>
         <div class="col">
           <div class="card">
             <div class="card-body">
-              <h5 class="title"><i class="fa fa-file-text-o"></i> Nova página <small>Inclusão de nova página no site</small></h5>
+              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ page.title }} <small>Edição de página do site</small></h5>
 
               <form @submit.prevent="save()">
                 <div class="form-group">
@@ -41,28 +41,37 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-
 export default {
   data() {
     return {
-      page: {},
       editor: null
+    }
+  },
+  computed: {
+    page() {
+      return this.$store.state.Pages.onePage
     }
   },
   methods: {
     save() {
       this.page.body = this.editor.getData();
-      this.$store.dispatch('createPage', this.page)
+      this.$store.dispatch('updatePage', this.page)
         .then((res) => {
-          this.$router.push({path: '/pages'})
+          this.$router.push({path: '/pages/' + this.page.id})
         })
     }
   },
   mounted () {
+
     ClassicEditor
       .create(document.querySelector('#body'))
       .then(editor => {
         this.editor = editor;
+
+        this.$store.dispatch('getPage', this.$route.params.id).then((res) => {
+          console.log(res)
+          this.editor.setData(this.page.body);
+        })
       })
       .catch(err => {
         console.error(err.stack);

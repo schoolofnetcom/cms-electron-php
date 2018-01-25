@@ -27,6 +27,29 @@ class Domain
         return $this->model->create($data);
     }
 
+    public function update($id)
+    {
+        $page = $this->model->findOrFail($id);
+
+        parse_str(file_get_contents("php://input"), $put_vars);
+        $data = [
+            'title' => filter_var($put_vars['title'] ?? null),
+            'slug' => filter_var($put_vars['slug'] ?? null),
+            'body' => filter_var($put_vars['body'] ?? null),
+        ];
+
+        $this->validation($data);
+
+        return $page->update($data);
+    }
+
+    public function delete($id)
+    {
+        $page = $this->model->findOrFail($id);
+
+        return $page->delete();
+    }
+
     protected function validation($data)
     {
         $isValid = $this->validate($data);
@@ -41,7 +64,7 @@ class Domain
         $filter_factory = new FilterFactory;
         $filter = $filter_factory->newSubjectFilter();
 
-        $filter->validate('title')->is('alnum');
+        $filter->validate('title')->is('string');
         $filter->validate('title')->isNot('int');
         $filter->validate('title')->is('strlenMin', 3);
 
