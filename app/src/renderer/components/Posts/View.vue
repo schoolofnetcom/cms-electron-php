@@ -6,21 +6,21 @@
             <small>AÇÕES</small>
           </p>
 
-          <a href="#/pages" class="btn btn-secondary" title="Voltar">
+          <a href="#/posts" class="btn btn-secondary" title="Voltar">
             <i class="fa fa-arrow-circle-left"></i>
           </a>
         </div>
         <div class="col-11">
           <div class="card">
             <div class="card-body">
-              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ page.title }} <small>Visualização de página do site</small></h5>
+              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ post.title }} <small>Visualização de artigo do blog</small></h5>
 
-              <div v-html="page.body"></div>
+              <div v-html="post.body"></div>
 
             </div>
             <div class="card-footer">
-              <a :href="'#/pages/edit/' + page.id" class="btn btn-primary">Editar</a>
-              <a :href="'#/pages/remove/' + page.id" class="btn btn-danger">Remover</a>
+              <a :href="'#/posts/edit/' + post.id" class="btn btn-primary">Editar</a>
+              <a :href="'#/posts/remove/' + post.id" class="btn btn-danger">Remover</a>
             </div>
           </div>
         </div>
@@ -31,12 +31,12 @@
 <script>
 export default {
   computed: {
-    page() {
-      return this.$store.state.Pages.onePage
+    post() {
+      return this.$store.state.Posts.onePost
     }
   },
   mounted () {
-    this.$store.dispatch('getPage', this.$route.params.id)
+    this.$store.dispatch('getPost', this.$route.params.id)
   }
 }
 </script>

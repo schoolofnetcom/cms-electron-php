@@ -6,22 +6,22 @@
             <small>AÇÕES</small>
           </p>
 
-          <a :href="'#/pages/' + page.id" class="btn btn-secondary" title="Voltar">
+          <a :href="'#/users/' + user.id" class="btn btn-secondary" title="Voltar">
             <i class="fa fa-arrow-circle-left"></i>
           </a>
         </div>
         <div class="col-11">
           <div class="card">
             <div class="card-body">
-              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ page.title }} <small>Remoção de página do site</small></h5>
+              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ user.title }} <small>Remoção de usuário</small></h5>
 
               <div class="alert alert-danger">
-                Tem certeza que quer remover esta página, essa ação não poderá ser desfeita!
+                Tem certeza que quer remover este usuário, essa ação não poderá ser desfeita!
               </div>
 
             </div>
             <div class="card-footer">
-              <a :href="'#/pages/' + page.id" class="btn btn-secondary">Não remover</a>
+              <a :href="'#/users/' + user.id" class="btn btn-secondary">Não remover</a>
               <a href="" class="btn btn-primary" @click.prevent="remove()">Apagar definitivamente</a>
             </div>
           </div>
@@ -34,19 +34,19 @@
 export default {
   methods: {
     remove() {
-      this.$store.dispatch('removePage', this.page.id)
+      this.$store.dispatch('removeUser', this.user.id)
         .then(() => {
-          this.$router.push({path: '/pages'});
+          this.$router.push({path: '/users'});
         })
     }
   },
   computed: {
-    page() {
-      return this.$store.state.Pages.onePage
+    user() {
+      return this.$store.state.Users.oneUser
     }
   },
   mounted () {
-    this.$store.dispatch('getPage', this.$route.params.id)
+    this.$store.dispatch('getUser', this.$route.params.id)
   }
 }
 </script>

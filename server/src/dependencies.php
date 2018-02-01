@@ -9,6 +9,19 @@ $container['renderer'] = function ($c) {
     return new Slim\Views\PhpRenderer($settings['template_path']);
 };
 
+// view renderer with Twig
+
+$container['view'] = function ($c) {
+    $settings = $c->get('settings')['renderer'];
+    $view = new \Slim\Views\Twig($settings['template_path']);
+
+    // Instantiate and add Slim specific extension
+    $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
+    $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+
+    return $view;
+};
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
@@ -45,11 +58,28 @@ $container['errorHandler'] = function ($c) {
     };
 };
 
+$container['secretKey'] = function ($c) {
+    return $c->get('settings')['secret'];
+};
+
 //adr
 $container['pages_domain'] = function ($c) {
     return new App\Pages\Domain;
 };
-
 $container['pages_responder'] = function ($c) {
     return new App\Pages\Responder;
+};
+
+$container['posts_domain'] = function ($c) {
+    return new App\Posts\Domain;
+};
+$container['posts_responder'] = function ($c) {
+    return new App\Posts\Responder;
+};
+
+$container['users_domain'] = function ($c) {
+    return new App\Users\Domain;
+};
+$container['users_responder'] = function ($c) {
+    return new App\Users\Responder;
 };

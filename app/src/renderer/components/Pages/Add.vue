@@ -10,7 +10,7 @@
             <i class="fa fa-arrow-circle-left"></i>
           </a>
         </div>
-        <div class="col">
+        <div class="col-11">
           <div class="card">
             <div class="card-body">
               <h5 class="title"><i class="fa fa-file-text-o"></i> Nova página <small>Inclusão de nova página no site</small></h5>

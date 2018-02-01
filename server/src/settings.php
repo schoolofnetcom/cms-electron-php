@@ -16,6 +16,9 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
 
+        'domain' => 'http://localhost:8000',
+        'secret' => 'uma-chave-aleatoria',
+
         'db'=> [
             'driver'    => 'mysql',
             'host'      => 'localhost',

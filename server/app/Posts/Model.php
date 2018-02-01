@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Pages;
+namespace App\Posts;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Model extends Eloquent
 {
-    protected $table = 'pages';
+    protected $table = 'posts';
     protected $fillable = ['title', 'body', 'slug'];
 
     public function setTitleAttribute($value)

@@ -6,21 +6,21 @@
             <small>AÇÕES</small>
           </p>
 
-          <a href="#/pages" class="btn btn-secondary" title="Voltar">
+          <a href="#/users" class="btn btn-secondary" title="Voltar">
             <i class="fa fa-arrow-circle-left"></i>
           </a>
         </div>
         <div class="col-11">
           <div class="card">
             <div class="card-body">
-              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ page.title }} <small>Visualização de página do site</small></h5>
+              <h5 class="title"><i class="fa fa-file-text-o"></i> {{ user.name }} <small>Visualização de usuário</small></h5>
 
-              <div v-html="page.body"></div>
+              <div v-html="user.email"></div>
 
             </div>
             <div class="card-footer">
-              <a :href="'#/pages/edit/' + page.id" class="btn btn-primary">Editar</a>
-              <a :href="'#/pages/remove/' + page.id" class="btn btn-danger">Remover</a>
+              <a :href="'#/users/edit/' + user.id" class="btn btn-primary">Editar</a>
+              <a :href="'#/users/remove/' + user.id" class="btn btn-danger">Remover</a>
             </div>
           </div>
         </div>
@@ -31,12 +31,12 @@
 <script>
 export default {
   computed: {
-    page() {
-      return this.$store.state.Pages.onePage
+    user() {
+      return this.$store.state.Users.oneUser
     }
   },
   mounted () {
-    this.$store.dispatch('getPage', this.$route.params.id)
+    this.$store.dispatch('getUser', this.$route.params.id)
   }
 }
 </script>

@@ -29,19 +29,23 @@
           </p>
 
           <p>
-            <a href="#/pages" class="btn btn-secondary"><i class="fa fa-file-text-o"></i></a>
+            <router-link to="/pages" class="btn btn-secondary"><i class="fa fa-file-text-o"></i></router-link>
           </p>
 
           <p>
-            <a href="#/pages" class="btn btn-secondary"><i class="fa fa-rss"></i></a>
+            <router-link to="/posts" class="btn btn-secondary"><i class="fa fa-rss"></i></router-link>
           </p>
 
           <p>
-            <a href="#/pages" class="btn btn-secondary"><i class="fa fa-user"></i></a>
+            <router-link to="/users" class="btn btn-secondary"><i class="fa fa-user"></i></router-link>
+          </p>
+
+          <p>
+            <a href="" class="btn btn-secondary" @click.prevent="logout()"><i class="fa fa-sign-out"></i></a>
           </p>
 
         </div>
-        <div class="col">
+        <div class="col-11">
           <transition enter-active-class="animated fadeIn" leave-active-class="animated zoomOut">
             <router-view></router-view>
           </transition>
@@ -82,6 +86,11 @@
       close() {
         this.mainWindow.close()
       },
+      logout() {
+        window.axios.defaults.headers.common['Authorization'] = null;
+        window.localStorage.removeItem('token')
+        this.$router.push({path: '/auth'})
+      },
     },
     mounted() {
       this.mainWindow = electron.remote.BrowserWindow.getFocusedWindow()
@@ -90,6 +99,20 @@
 </script>
 
 <style>
+  html, body, #app {
+    height: 100%;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+  }
+  #content {
+    flex: 1;
+  }
+  #content > .row {
+    height: 100%;
+  }
   body {
     background-color: rgba(236, 240, 241, 1.0);
   }
@@ -114,6 +137,11 @@
   }
 
   .nav {
-    display: block;
+    display: block !important;
+  }
+
+  .router-link-active {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
   }
 </style>

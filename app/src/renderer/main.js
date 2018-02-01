@@ -11,6 +11,7 @@ import 'animate.css/animate.css'
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 
 import './axios';
+import './ckeditor';
 
 Vue.config.productionTip = false
 

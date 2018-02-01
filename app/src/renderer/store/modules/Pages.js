@@ -17,12 +17,12 @@ const mutations = {
 
 const actions = {
   listPages(context) {
-    window.axios.get('http://localhost:8000/api/v1/pages').then((res) => {
+    window.axios.get('/api/v1/pages').then((res) => {
       context.commit('updatePagesList', res)
     })
   },
   getPage(context, id) {
-    return window.axios.get('http://localhost:8000/api/v1/pages/' + id).then((res) => {
+    return window.axios.get('/api/v1/pages/' + id).then((res) => {
       context.commit('updatePage', res)
     })
   },
@@ -35,7 +35,7 @@ const actions = {
       swalMessage: 'Sua nova página já está disponível'
     }
 
-    return window.axios.post('http://localhost:8000/api/v1/pages', data, config).then((res) => {
+    return window.axios.post('/api/v1/pages', data, config).then((res) => {
       context.commit('addToPagesList', res)
       return res;
     })
@@ -50,12 +50,12 @@ const actions = {
       swalMessage: 'Sua nova página já está disponível'
     }
 
-    return window.axios.put('http://localhost:8000/api/v1/pages/' + id, data, config).then((res) => {
+    return window.axios.put('/api/v1/pages/' + id, data, config).then((res) => {
       return res;
     })
   },
   removePage(context, id) {
-    return window.axios.delete('http://localhost:8000/api/v1/pages/' + id).then((res) => {
+    return window.axios.delete('/api/v1/pages/' + id).then((res) => {
       return res;
     })
   }

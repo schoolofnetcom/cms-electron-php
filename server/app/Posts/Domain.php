@@ -1,19 +1,11 @@
 <?php
 
-namespace App\Pages;
+namespace App\Posts;
 
 use App\ADR\Domain as BaseDomain;
 
 class Domain extends BaseDomain
 {
-    public function siteData($slug)
-    {
-        $page = $this->model->where('slug', $slug)->first();
-        $menus = $this->model->get();
-
-        return compact('page', 'menus');
-    }
-
     protected function setRules()
     {
         $this->filter->validate('title')->is('string');

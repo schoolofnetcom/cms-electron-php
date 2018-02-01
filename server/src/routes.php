@@ -2,7 +2,6 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-use App\Pages\Domain as Pages;
 
 // Routes
 
@@ -10,27 +9,13 @@ $app->options('/{routes:.+}', function ($req, $res, $args) {
     return $res;
 });
 
-$app->get('/api/v1/pages', function (Request $request, Response $response, array $args) {
-    $pages = $this->pages_domain->all();
-    return $this->pages_responder->all($response, $pages);
-});
+include __DIR__.'/routes/upload.php';
+include __DIR__.'/routes/pages.php';
+include __DIR__.'/routes/posts.php';
+include __DIR__.'/routes/users.php';
+include __DIR__.'/routes/auth.php';
 
-$app->get('/api/v1/pages/{id}', function (Request $request, Response $response, array $args) {
-    $page = $this->pages_domain->findOrFail($args['id']);
-    return $this->pages_responder->one($response, $page);
-});
-
-$app->put('/api/v1/pages/{id}', function (Request $request, Response $response, array $args) {
-    $page = $this->pages_domain->update($args['id']);
-    return $this->pages_responder->update($response, $page);
-});
-
-$app->delete('/api/v1/pages/{id}', function (Request $request, Response $response, array $args) {
-    $page = $this->pages_domain->delete($args['id']);
-    return $this->pages_responder->update($response, $page);
-});
-
-$app->post('/api/v1/pages', function (Request $request, Response $response, array $args) {
-    $page = $this->pages_domain->create();
-    return $this->pages_responder->create($response, $page);
+$app->get('/{slug}', function ($req, $res, $args) {
+    $data = $this->pages_domain->siteData($args['slug']);
+    return $this->pages_responder->renderPage($res, $data, $this);
 });
